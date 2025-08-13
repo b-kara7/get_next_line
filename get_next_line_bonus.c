@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 14:22:17 by bkara             #+#    #+#             */
-/*   Updated: 2025/08/12 20:19:46 by bkara            ###   ########.fr       */
+/*   Created: 2025/08/12 19:45:09 by bkara             #+#    #+#             */
+/*   Updated: 2025/08/12 20:25:57 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_read_file(char *stash, int fd)
 {
@@ -98,15 +98,15 @@ static char	*ft_remainder(char *stash)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 1024)
 		return (NULL);
-	stash = ft_read_file(stash, fd);
-	if (!stash)
+	stash[fd] = ft_read_file(stash[fd], fd);
+	if (!stash[fd])
 		return (NULL);
-	line = ft_get_line(stash);
-	stash = ft_remainder(stash);
+	line = ft_get_line(stash[fd]);
+	stash[fd] = ft_remainder(stash[fd]);
 	return (line);
 }

@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 12:09:24 by bkara             #+#    #+#             */
-/*   Updated: 2025/08/13 13:34:28 by bkara            ###   ########.fr       */
+/*   Created: 2025/08/12 19:48:00 by bkara             #+#    #+#             */
+/*   Updated: 2025/08/13 13:33:38 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	if (!s)
+		return (0);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -25,18 +37,6 @@ char	*ft_strchr(const char *s, int c)
 	if ((char)c == '\0')
 		return ((char *)s);
 	return (NULL);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	if (!s)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

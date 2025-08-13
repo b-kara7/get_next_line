@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/05 12:12:06 by bkara             #+#    #+#             */
-/*   Updated: 2025/08/12 20:25:06 by bkara            ###   ########.fr       */
+/*   Created: 2025/08/12 19:46:01 by bkara             #+#    #+#             */
+/*   Updated: 2025/08/12 20:14:38 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,8 +21,8 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(const char *s1, const char *s2);
 
 #endif
