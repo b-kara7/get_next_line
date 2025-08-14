@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:22:17 by bkara             #+#    #+#             */
-/*   Updated: 2025/08/14 16:59:11 by bkara            ###   ########.fr       */
+/*   Updated: 2025/08/14 21:05:48 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(stash);
 	stash = ft_remainder(stash);
-	if (!stash || stash[0] == '\0')
+	if (stash && stash[0] == '\0')
 	{
 		free(stash);
 		stash = NULL;
