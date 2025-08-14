@@ -6,7 +6,7 @@
 /*   By: bkara <bkara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:22:17 by bkara             #+#    #+#             */
-/*   Updated: 2025/08/12 20:19:46 by bkara            ###   ########.fr       */
+/*   Updated: 2025/08/14 16:59:11 by bkara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,21 @@ static char	*ft_read_file(char *stash, int fd)
 	if (!temp_stash)
 		return (NULL);
 	byte_read = 1;
-	while (!ft_strchr(stash, '\n') && byte_read > 0)
+	while ((!stash || !ft_strchr(stash, '\n')) && byte_read > 0)
 	{
 		byte_read = read(fd, temp_stash, BUFFER_SIZE);
 		if (byte_read == -1)
-		{
-			free(temp_stash);
-			free(stash);
-			return (NULL);
-		}
+			return (free(temp_stash), free(stash), NULL);
+		if (byte_read == 0)
+			break ;
 		temp_stash[byte_read] = '\0';
 		temp = ft_strjoin(stash, temp_stash);
+		if (!temp)
+			return (free(temp_stash), free(stash), NULL);
 		free(stash);
 		stash = temp;
 	}
-	free(temp_stash);
-	return (stash);
+	return (free(temp_stash), stash);
 }
 
 static char	*ft_get_line(char *stash)
@@ -86,7 +85,7 @@ static char	*ft_remainder(char *stash)
 	}
 	remainder = malloc(sizeof(char) * (ft_strlen(stash) - i));
 	if (!remainder)
-		return (NULL);
+		return (free(stash), NULL);
 	i++;
 	j = 0;
 	while (stash[i])
@@ -108,5 +107,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(stash);
 	stash = ft_remainder(stash);
+	if (!stash || stash[0] == '\0')
+	{
+		free(stash);
+		stash = NULL;
+	}
 	return (line);
 }
