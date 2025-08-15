@@ -107,10 +107,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(stash);
 	stash = ft_remainder(stash);
-	if (stash && stash[0] == '\0')
-	{
-		free(stash);
-		stash = NULL;
-	}
 	return (line);
 }
